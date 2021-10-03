@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 
 public class TileManager : MonoBehaviour
 {
+    /// <summary>
+    /// Array holding references to each Tile GameObject.
+    /// </summary>
     [SerializeField]
     private GameObject[] tiles;
 
@@ -20,6 +23,9 @@ public class TileManager : MonoBehaviour
     /// </summary>
     private Lanes[] laneScripts;
 
+    /// <summary>
+    /// [PLACEHOLDER] Template prefab representing Obstacle objects.
+    /// </summary>
     [SerializeField]
     private GameObject obstacleTemplate;
 
@@ -36,13 +42,8 @@ public class TileManager : MonoBehaviour
             laneScripts[i] = tiles[i].GetComponent<Lanes>();
         }
 
+        // Populate a tile with Obstacle objects whenever TileReset is invoked.
         Tile.TileReset.AddListener(FillTile);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     /// <summary>
@@ -60,30 +61,64 @@ public class TileManager : MonoBehaviour
         return -1;
     }
 
+    /// <summary>
+    /// Uses RNG to determine whether to place an Obstacle at a given lane on a
+    /// specified Tiles.
+    /// </summary>
+    /// <param name="resettingTileIndex">
+    /// Index of tile being reset.
+    /// </param>
+    /// <param name="lane">
+    /// Lane to potentially place an Obstacle.
+    /// </param>
+    /// <returns>
+    /// A reference to the newly-created Obstacle or null, based on RNG output.
+    /// </returns>
     private GameObject PlaceObstacle(int resettingTileIndex, int lane)
     {
+        // 50/50 chance of obstacle generation. Can be modifed to alter
+        // game difficulty.
         if (Random.Range(0, 2) == 0)
         {
+            // Set coordinates of Obstacle to be placed.
+            // x = take x of resetting tile and move Obstacle into the correct
+            // lane by shifting it the appropriate number of widths.
+            // lane - 1 to prevent spawning off-tile.
+            float x = (lane - 1) * obstacleTemplate.transform.localScale.x
+                        + tiles[resettingTileIndex].transform.position.x;
+
+            // +1 to raise it above the tile.
+            float y = tiles[resettingTileIndex].transform.position.y + 1;
+
+            float z = tiles[resettingTileIndex].transform.position.z;
+
             // Use overload that accounts for position and rotation
             GameObject r = Instantiate(
                 obstacleTemplate,
-                new Vector3(
-                    tiles[resettingTileIndex].transform.position.x + lane * obstacleTemplate.transform.localScale.x,
-                    tiles[resettingTileIndex].transform.position.y,
-                    tiles[resettingTileIndex].transform.position.z),
+                new Vector3(x, y, z),
                 tiles[resettingTileIndex].transform.rotation);
+
+            // Make the Obstacle a child of the Tile so they move together.
             r.transform.parent = tiles[resettingTileIndex].transform;
+
+            return r;
         }
         
+        // No Obstacle created.
         return null;
     }
 
+    /// <summary>
+    /// Populates a resetting tile with Obstacles.
+    /// </summary>
     public void FillTile()
     {
         int resettingTileIndex = LocateResettingTile();
 
         // Break early if an invalid index is found.
         if (resettingTileIndex == -1) return;
+
+        laneScripts[resettingTileIndex].ClearObstacles();
 
         // Look at the tile before the resetting one to determine obstacle
         // placement. Leverage modulus to create a "circular" general-form
@@ -102,8 +137,10 @@ public class TileManager : MonoBehaviour
             else
             {
                 laneScripts[resettingTileIndex].lanes[i] = PlaceObstacle(resettingTileIndex, i);
-                //tiles[resettingTileIndex].
             }
         }
+
+        // Reset procedure complete.
+        tileScripts[resettingTileIndex].resetting = false;
     }
 }

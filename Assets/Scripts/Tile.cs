@@ -12,6 +12,8 @@ public class Tile : MonoBehaviour
     float tileSpeed = 10.0f;
     public int tileOrder = 0;
 
+    // Track ResetTile() calls in TileManager by invoking an event to avoid
+    // iterating through an array.
     public static UnityEvent TileReset = new UnityEvent();
 
     // Start is called before the first frame update
