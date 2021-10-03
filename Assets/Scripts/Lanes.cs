@@ -12,17 +12,43 @@ public class Lanes : MonoBehaviour
     const int laneCount = 3;
 
     /// <summary>
-    /// Tracks occupancy of lanes on this Tile prefab.
+    /// Tracks occupancy of lanes by obstacles on this Tile prefab.
     /// </summary>
-    public GameObject[] lanes = new GameObject[laneCount];
+    public GameObject[] obstacles = new GameObject[laneCount];
 
     /// <summary>
-    /// Loops through and clears all obstacles on the Tile this script is 
-    /// attached to. Called when a Tile's position is reset.
+    /// Tracks occupancy of lanes by collectibles on this Tile prefab.
+    /// </summary>
+    public GameObject[,] collectibles = new GameObject[
+        laneCount, 
+        TileManager.collectiblesPerLane];
+
+    /// <summary>
+    /// Loops through and clears all obstacles and collectibles occupying the 
+    /// Tile this script is attached to. Called when a Tile's position is reset.
     /// </summary>
     public void ClearObstacles()
     {
-        foreach (GameObject obstacle in lanes) 
-            if (obstacle) Destroy(obstacle);
+        for (int i = 0; i < obstacles.Length; i++)
+        {
+            if (obstacles[i])
+            {
+                Destroy(obstacles[i]);
+                obstacles[i] = null;
+            }
+        }
+
+        for (int i = 0; i < collectibles.GetLength(0); i++)
+        {
+            for (int j = 0; j < collectibles.GetLength(1); j++)
+            {
+                if (collectibles[i, j])
+                {
+                    Debug.Log(string.Format("destroyed collectible {0} at lane {1}", j, i));
+                    Destroy(collectibles[i, j]);
+                    collectibles[i, j] = null;
+                }
+            }
+        }
     }
 }

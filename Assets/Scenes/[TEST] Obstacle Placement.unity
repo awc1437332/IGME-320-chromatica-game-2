@@ -672,6 +672,8 @@ MonoBehaviour:
   - {fileID: 9650607}
   obstacleTemplate: {fileID: 7959664456401613508, guid: 284e8857785751c4ab9b8c754536bab4,
     type: 3}
+  collectibleTemplate: {fileID: 8645324967976619718, guid: 7bd45ac8f9b3db14ea36d4627f8e8700,
+    type: 3}
 --- !u!4 &2139018425
 Transform:
   m_ObjectHideFlags: 0
