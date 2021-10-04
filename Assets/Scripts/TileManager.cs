@@ -143,7 +143,7 @@ public class TileManager : MonoBehaviour
                     // move together.
                     c.transform.parent = tiles[resettingTileIndex].transform;
 
-                    laneScripts[lane].collectibles[lane, i] = c;
+                    laneScripts[resettingTileIndex].collectibles[lane, i] = c;
                 }
                 break;
             case "occupied":
