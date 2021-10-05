@@ -59,7 +59,7 @@ public class StateManager : MonoBehaviour
 
         //NOTE: ADD CODE TO RESET TILES ETC. LATER
 
-        //tileManager.ToggleTiles();
+        tileManager.ToggleTiles();
     }
 
     //Resumes the current game
@@ -67,7 +67,7 @@ public class StateManager : MonoBehaviour
     {
         ChangeState(GameState.Gameplay);
 
-        //tileManager.ToggleTiles();
+        tileManager.ToggleTiles();
     }
 
     //Pauses the game and disables tiles
@@ -75,7 +75,7 @@ public class StateManager : MonoBehaviour
     {
         ChangeState(GameState.Pause);
 
-        //tileManager.ToggleTiles();
+        tileManager.ToggleTiles();
     }
 
     //Changes the game state and disables all tiles from moving
@@ -83,6 +83,6 @@ public class StateManager : MonoBehaviour
     {
         ChangeState(GameState.End);
 
-        //tileManager.ToggleTiles();
+        tileManager.ToggleTiles();
     }
 }
