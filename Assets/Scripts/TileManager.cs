@@ -320,5 +320,16 @@ public class TileManager : MonoBehaviour
             else PlaceCollectibles(false, resettingTileIndex, lane);
         }
     }
+
+    /// <summary>
+    /// Stops all tiles from moving or updating.
+    /// </summary>
+    public void DisableTiles()
+    {
+        foreach(Tile tile in tileScripts)
+        {
+            tile.isActive = false;
+        }
+    }
     #endregion
 }
