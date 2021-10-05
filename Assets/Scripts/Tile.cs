@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Tile : MonoBehaviour
 {
     public bool isActive = false;
+    public bool resetting = false;
 
     [SerializeField]
     float tileSpeed = 10.0f;
     public int tileOrder = 0;
+
+    // Track ResetTile() calls in TileManager by invoking an event to avoid
+    // iterating through an array.
+    public static UnityEvent TileReset = new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
@@ -43,12 +49,16 @@ public class Tile : MonoBehaviour
         transform.Translate(0f, 0f, -tileSpeed * Time.deltaTime);
     }
 
-    //Translates the tile back to the beginning of the loop and determines its new mesh
+    //Translates the tile back to the beginning of the loop and determines its
+    //new mesh. Also invokes the TileReset event and marks this Tile as 
+    // "resetting" so the TileManager can spawn Obstacles on it appropriately.
     void ResetTile()
     {
         //Generate a new tile with the manager that will call ChangeMesh()
 
         transform.Translate(0f, 0f, 80.0f);
+        resetting = true;
+        TileReset.Invoke();
     }
 
     //CALLED BY MANAGER CLASS
