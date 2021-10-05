@@ -197,7 +197,7 @@ PrefabInstance:
     - target: {fileID: 5663500589887034357, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
       propertyPath: tileSpeed
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5663500589887034357, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
@@ -276,7 +276,7 @@ PrefabInstance:
     - target: {fileID: 5663500589887034357, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
       propertyPath: tileSpeed
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5663500589887034357, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
@@ -453,7 +453,7 @@ PrefabInstance:
     - target: {fileID: 5663500589887034357, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
       propertyPath: tileSpeed
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5663500589887034357, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
@@ -627,7 +627,7 @@ PrefabInstance:
     - target: {fileID: 5663500589887034357, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
       propertyPath: tileSpeed
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5663500589887034357, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
@@ -674,6 +674,9 @@ MonoBehaviour:
     type: 3}
   collectibleTemplate: {fileID: 8645324967976619718, guid: 7bd45ac8f9b3db14ea36d4627f8e8700,
     type: 3}
+  tileTemplate: {fileID: 5663500589887034356, guid: 5d606fd981e88f84ab91a328d3f15fac,
+    type: 3}
+  distanceFromObstacle: 2
 --- !u!4 &2139018425
 Transform:
   m_ObjectHideFlags: 0

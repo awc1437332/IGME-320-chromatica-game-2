@@ -17,7 +17,8 @@ public class Lanes : MonoBehaviour
     public GameObject[] obstacles = new GameObject[laneCount];
 
     /// <summary>
-    /// Tracks occupancy of lanes by collectibles on this Tile prefab.
+    /// 2D array tracking occupancy of lanes by collectibles on this Tile prefab.
+    /// Index 0: lane and Index 1: array of collectibles.
     /// </summary>
     public GameObject[,] collectibles = new GameObject[
         laneCount, 
