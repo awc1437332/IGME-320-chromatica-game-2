@@ -45,7 +45,7 @@ public class Lanes : MonoBehaviour
             {
                 if (collectibles[i, j])
                 {
-                    Debug.Log(string.Format("destroyed collectible {0} at lane {1}", j, i));
+                    //Debug.Log(string.Format("destroyed collectible {0} at lane {1}", j, i));
                     Destroy(collectibles[i, j]);
                     collectibles[i, j] = null;
                 }
