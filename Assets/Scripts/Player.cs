@@ -41,17 +41,14 @@ public class Player : MonoBehaviour
     Vector3 gravityForce = new Vector3(0.0f, -.0009f, 0.0f);
 
     [SerializeField]
-    bool isGrounded = true; 
+    bool isGrounded = true;
     #endregion
 
-    #region Variables for collision
-    //These are references of the other game objects that I passed to the player
     [SerializeField]
-    GameObject collectible;
+    float score = 0;
 
     [SerializeField]
-    GameObject obstacle;
-    #endregion
+    bool isActive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -134,14 +131,17 @@ public class Player : MonoBehaviour
     /// <param name="collision">This parameter is the collision that is being detected and passed through</param>
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Collectible")
+        if (collision.gameObject.tag == "Collectible")
         {
-            Debug.Log("You have collided with a collectible");
+            //Debug.Log("You have collided with a collectible");
+            Destroy(collision.gameObject);
+            score++;
         }
 
-        if (collision.gameObject.name == "Obstacle")
+        if (collision.gameObject.tag == "Obstacle")
         {
-            Debug.Log("You have collided with an obstacle");
+            //Debug.Log("You have collided with an obstacle");
+            isActive = false;
         }
     }
 
