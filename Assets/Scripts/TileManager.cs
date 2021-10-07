@@ -324,11 +324,11 @@ public class TileManager : MonoBehaviour
     /// <summary>
     /// Stops all tiles from moving or updating.
     /// </summary>
-    public void ToggleTiles()
+    public void ToggleTiles(bool value)
     {
         foreach(Tile tile in tileScripts)
         {
-            tile.isActive = !tile.isActive;
+            tile.isActive = value;
         }
     }
     #endregion
