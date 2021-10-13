@@ -221,6 +221,7 @@ public class TileManager : MonoBehaviour
                         spawnOrigin.z + zUnit * radius);
                     collectible.transform.rotation = tiles[resettingTileIndex].transform.rotation;
                     collectible.SetActive(true);
+                    collectible.GetComponent<Renderer>().enabled = true;
                 }
 
                 // Make the Collectible a child of the Tile so they
@@ -261,6 +262,7 @@ public class TileManager : MonoBehaviour
                     collectible.transform.position = new Vector3(x, y, z);
                     collectible.transform.rotation = tiles[resettingTileIndex].transform.rotation;
                     collectible.SetActive(true);
+                    collectible.GetComponent<Renderer>().enabled = true;
                 }
 
                 // Make the Collectible a child of the Tile so they

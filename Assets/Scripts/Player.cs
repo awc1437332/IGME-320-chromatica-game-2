@@ -141,7 +141,9 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Collectible")
         {
             Debug.Log("You have collided with a collectible");
-            collision.gameObject.SetActive(false);
+            // Disable the renderer but do not deactivate the GameObject so
+            // that it does not mess with the ObjectPool's bulk deactivation.
+            collision.gameObject.GetComponent<Renderer>().enabled = false;
             score++;
         }
 
