@@ -698,6 +698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2021033856}
   - component: {fileID: 2021033855}
+  - component: {fileID: 2021033857}
   m_Layer: 0
   m_Name: Tile Manager
   m_TagString: Untagged
@@ -743,6 +744,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2021033857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021033854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81295ab12700e294d8362ed8b368ee8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleTemplate: {fileID: 7959664456401613508, guid: 284e8857785751c4ab9b8c754536bab4,
+    type: 3}
+  collectibleTemplate: {fileID: 8645324967976619718, guid: 7bd45ac8f9b3db14ea36d4627f8e8700,
+    type: 3}
+  obstaclePoolSize: 10
+  collectiblePoolSize: 30
 --- !u!1001 &2052859517
 PrefabInstance:
   m_ObjectHideFlags: 0
