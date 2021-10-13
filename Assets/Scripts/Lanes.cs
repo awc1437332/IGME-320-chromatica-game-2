@@ -34,7 +34,7 @@ public class Lanes : MonoBehaviour
         {
             if (obstacles[i])
             {
-                Destroy(obstacles[i]);
+                obstacles[i].SetActive(false);
                 obstacles[i] = null;
             }
         }
@@ -45,8 +45,8 @@ public class Lanes : MonoBehaviour
             {
                 if (collectibles[i, j])
                 {
-                    //Debug.Log(string.Format("destroyed collectible {0} at lane {1}", j, i));
-                    Destroy(collectibles[i, j]);
+                    Debug.Log(string.Format("destroyed collectible {0} at lane {1}", j, i));
+                    collectibles[i, j].SetActive(false);
                     collectibles[i, j] = null;
                 }
             }

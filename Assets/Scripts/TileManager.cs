@@ -129,11 +129,18 @@ public class TileManager : MonoBehaviour
 
             float z = tiles[resettingTileIndex].transform.position.z;
 
-            // Use overload that includes both position and rotation.
-            GameObject obstacle = Instantiate(
-                obstacleTemplate,
-                new Vector3(x, y, z),
-                tiles[resettingTileIndex].transform.rotation);
+            //// Use overload that includes both position and rotation.
+            //GameObject obstacle = Instantiate(
+            //    obstacleTemplate,
+            //    new Vector3(x, y, z),
+            //    tiles[resettingTileIndex].transform.rotation);
+            GameObject obstacle = ObjectPool.Instance.GetPooledObject(PooledObjects.Obstacle);
+            if (obstacle)
+            {
+                obstacle.transform.position = new Vector3(x, y, z);
+                obstacle.transform.rotation = tiles[resettingTileIndex].transform.rotation;
+                obstacle.SetActive(true);
+            }
 
             // Make the Obstacle a child of the Tile so they move together.
             obstacle.transform.parent = tiles[resettingTileIndex].transform;
@@ -198,13 +205,23 @@ public class TileManager : MonoBehaviour
                     laneScripts[resettingTileIndex].obstacles[lane].transform.lossyScale.z / 2 
                     + distanceFromObstacle;
 
-                GameObject collectible = Instantiate(
-                    collectibleTemplate,
-                    new Vector3(
+                //GameObject collectible = Instantiate(
+                //    collectibleTemplate,
+                //    new Vector3(
+                //        x,
+                //        spawnOrigin.y + yUnit * radius + 1, // +1 to raise it above the tile.
+                //        spawnOrigin.z + zUnit * radius),
+                //    tiles[resettingTileIndex].transform.rotation);
+                GameObject collectible = ObjectPool.Instance.GetPooledObject(PooledObjects.Collectible);
+                if (collectible)
+                {
+                    collectible.transform.position = new Vector3(
                         x,
                         spawnOrigin.y + yUnit * radius + 1, // +1 to raise it above the tile.
-                        spawnOrigin.z + zUnit * radius),
-                    tiles[resettingTileIndex].transform.rotation);
+                        spawnOrigin.z + zUnit * radius);
+                    collectible.transform.rotation = tiles[resettingTileIndex].transform.rotation;
+                    collectible.SetActive(true);
+                }
 
                 // Make the Collectible a child of the Tile so they
                 // move together.
@@ -234,10 +251,17 @@ public class TileManager : MonoBehaviour
                     - tileTemplate.transform.localScale.z / 2      // 2)
                     + distBetweenSpawns * (0.5f + i);              // 3)
 
-                GameObject collectible = Instantiate(
-                    collectibleTemplate,
-                    new Vector3(x, y, z),
-                    tiles[resettingTileIndex].transform.rotation);
+                //GameObject collectible = Instantiate(
+                //    collectibleTemplate,
+                //    new Vector3(x, y, z),
+                //    tiles[resettingTileIndex].transform.rotation);
+                GameObject collectible = ObjectPool.Instance.GetPooledObject(PooledObjects.Collectible);
+                if (collectible)
+                {
+                    collectible.transform.position = new Vector3(x, y, z);
+                    collectible.transform.rotation = tiles[resettingTileIndex].transform.rotation;
+                    collectible.SetActive(true);
+                }
 
                 // Make the Collectible a child of the Tile so they
                 // move together.

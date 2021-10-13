@@ -140,8 +140,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Collectible")
         {
-            //Debug.Log("You have collided with a collectible");
-            Destroy(collision.gameObject);
+            Debug.Log("You have collided with a collectible");
+            collision.gameObject.SetActive(false);
             score++;
         }
 
