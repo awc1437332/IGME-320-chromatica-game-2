@@ -10,18 +10,48 @@ public enum PooledObjects
 
 public class ObjectPool : MonoBehaviour
 {
+    /// <summary>
+    /// [PLACEHOLDER] Template prefab representing Obstacle objects.
+    /// </summary>
     [SerializeField]
     private GameObject obstacleTemplate;
+
+    /// <summary>
+    /// [PLACEHOLDER] Template prefab representing Collectible objects.
+    /// </summary>
     [SerializeField]
     private GameObject collectibleTemplate;
+
+    /// <summary>
+    /// Initial size of array holding Obstacle instances.
+    /// </summary>
     [SerializeField]
     private int obstaclePoolSize;
+
+    /// <summary>
+    /// Initial size of array holding Collectible instances.
+    /// </summary>
     [SerializeField]
     private int collectiblePoolSize;
+
+    /// <summary>
+    /// Holds reference to this Singleton class.
+    /// </summary>
     private static ObjectPool instance;
+
+    /// <summary>
+    /// Array pooling Obstacle instances.
+    /// </summary>
     private GameObject[] obstaclePool;
+
+    /// <summary>
+    /// Array pooling Collectible instances.
+    /// </summary>
     private GameObject[] collectiblePool;
 
+    /// <summary>
+    /// Singleton instance of ObjectPool.
+    /// </summary>
     public static ObjectPool Instance
     {
         get
@@ -60,26 +90,42 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Requests a GameObject of the specified type from the corresponding
+    /// array.
+    /// </summary>
+    /// <param name="requestedObjectType">
+    /// Type of GameObject requested.
+    /// </param>
+    /// <returns>
+    /// The GameObject, if one is available, and null otherwise.
+    /// </returns>
+    public GameObject GetPooledObject(PooledObjects requestedObjectType)
     {
+        GameObject returnObject = null;
         
-    }
-
-    public GameObject GetPooledObject(PooledObjects pooledObject)
-    {
-        switch (pooledObject)
+        switch (requestedObjectType)
         {
             case PooledObjects.Obstacle:
                 for (int i = 0; i < obstaclePoolSize; i++)
-                    if (!obstaclePool[i].activeInHierarchy) return obstaclePool[i];
+                    if (!obstaclePool[i].activeInHierarchy)
+                        returnObject = obstaclePool[i];
                 break;
             case PooledObjects.Collectible:
                 for (int i = 0; i < collectiblePoolSize; i++)
-                    if (!collectiblePool[i].activeInHierarchy) return collectiblePool[i];
+                    if (!collectiblePool[i].activeInHierarchy)
+                        returnObject = collectiblePool[i];
                 break;
         }
 
-        return null;
+        // Set the pooled object to active and visible in the
+        // Scene before returning it to the caller.
+        if (returnObject)
+        {
+            returnObject.SetActive(true);
+            returnObject.GetComponent<Renderer>().enabled = true;
+        }
+
+        return returnObject;
     }
 }

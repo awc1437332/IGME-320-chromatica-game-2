@@ -25,11 +25,14 @@ public class Lanes : MonoBehaviour
         TileManager.collectiblesPerLane];
 
     /// <summary>
-    /// Loops through and clears all obstacles and collectibles occupying the 
-    /// Tile this script is attached to. Called when a Tile's position is reset.
+    /// Loops through and clears all obstacles and collectibles occupying lanes 
+    /// on the Tile this script is attached to. Called when a Tile's position 
+    /// is reset.
     /// </summary>
-    public void ClearObstacles()
+    public void ClearLanes()
     {
+        // Bulk deactivate all obstacles and collectibles, returning them to the
+        // ObjectPool instance.
         for (int i = 0; i < obstacles.Length; i++)
         {
             if (obstacles[i])
@@ -45,7 +48,7 @@ public class Lanes : MonoBehaviour
             {
                 if (collectibles[i, j])
                 {
-                    Debug.Log(string.Format("destroyed collectible {0} at lane {1}", j, i));
+                    //Debug.Log(string.Format("destroyed collectible {0} at lane {1}", j, i));
                     collectibles[i, j].SetActive(false);
                     collectibles[i, j] = null;
                 }
