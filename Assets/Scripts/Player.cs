@@ -46,10 +46,13 @@ public class Player : MonoBehaviour
     #endregion
 
     [SerializeField]
-    float score = 0;
+    public float score = 0;
 
     [SerializeField]
-    bool isActive = true;
+    public bool isActive = true;
+
+    //Unity event for death
+    public static UnityEvent PlayerDeath = new UnityEvent();
 
     //Unity event for death
     public static UnityEvent PlayerDeath = new UnityEvent();
@@ -70,65 +73,65 @@ public class Player : MonoBehaviour
         {
             //This method checks to see if the player is on the ground
             OnGround();
-
+            
             //This code will run if the user presses space or w and the player is on the ground
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isGrounded)
             {
                 velocity = jumpForce * Time.deltaTime;
                 isGrounded = false;
             }
-        }
-
-        //This line will update the position vector
-        playerPosition += velocity;
-
-        //This line will change the position of the player
-        transform.position = playerPosition;
-
-        //If the player is in the air this will run to apply gravity
-        if (!isGrounded)
-        {
-            velocity += gravityForce;
-        }
-        //This will run to stabilize the player at the ground level of the tiles
-        else
-        {
-            velocity = Vector3.zero;
-            playerPosition = new Vector3(playerPosition.x, 1.5f, playerPosition.z);
-            transform.position = playerPosition;
-        }
         
+            //This line will update the position vector
+            playerPosition += velocity;
 
-        //This will run if the input to move left is detected
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (lanePosition == activeLane.right)
+            //This line will change the position of the player
+            transform.position = playerPosition;
+
+            //If the player is in the air this will run to apply gravity
+            if (!isGrounded)
             {
-                lanePosition = activeLane.middle;
-
-                playerPosition = new Vector3(0.0f, playerPosition.y, playerPosition.z);
+                velocity += gravityForce;
             }
-            else if (lanePosition == activeLane.middle)
+            //This will run to stabilize the player at the ground level of the tiles
+            else
             {
-                lanePosition = activeLane.left;
-
-                playerPosition = new Vector3(-3.33f, playerPosition.y, playerPosition.z);
+                velocity = Vector3.zero;
+                playerPosition = new Vector3(playerPosition.x, 1.5f, playerPosition.z);
+                transform.position = playerPosition;
             }
-        }
-        //This will run if the input to move right is detected
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            if (lanePosition == activeLane.left)
-            {
-                lanePosition = activeLane.middle;
 
-                playerPosition = new Vector3(0, playerPosition.y, playerPosition.z);
+
+            //This will run if the input to move left is detected
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                if (lanePosition == activeLane.right)
+                {
+                    lanePosition = activeLane.middle;
+
+                    playerPosition = new Vector3(0.0f, playerPosition.y, playerPosition.z);
+                }
+                else if (lanePosition == activeLane.middle)
+                {
+                    lanePosition = activeLane.left;
+
+                    playerPosition = new Vector3(-3.33f, playerPosition.y, playerPosition.z);
+                }
             }
-            else if (lanePosition == activeLane.middle)
+            //This will run if the input to move right is detected
+            else if (Input.GetKeyDown(KeyCode.D))
             {
-                lanePosition = activeLane.right;
+                if (lanePosition == activeLane.left)
+                {
+                    lanePosition = activeLane.middle;
 
-                playerPosition = new Vector3(3.33f, playerPosition.y, playerPosition.z);
+                    playerPosition = new Vector3(0, playerPosition.y, playerPosition.z);
+                }
+                else if (lanePosition == activeLane.middle)
+                {
+                    lanePosition = activeLane.right;
+
+                    playerPosition = new Vector3(3.33f, playerPosition.y, playerPosition.z);
+                }
             }
         }
     }
@@ -143,7 +146,13 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Collectible")
         {
             //Debug.Log("You have collided with a collectible");
-            Destroy(collision.gameObject);
+
+            // Hide the GameObject, but do not deactivate it.
+            //
+            // Prevents interfering with Lanes.ClearLanes's bulk deactivation,
+            // since references to pooled objects are maintained in each Lane's
+            // underlying array before they get cleared.
+            collision.gameObject.GetComponent<Renderer>().enabled = false;
             score++;
         }
 
