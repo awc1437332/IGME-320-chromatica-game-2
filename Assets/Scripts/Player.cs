@@ -141,7 +141,13 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Collectible")
         {
             //Debug.Log("You have collided with a collectible");
-            Destroy(collision.gameObject);
+
+            // Hide the GameObject, but do not deactivate it.
+            //
+            // Prevents interfering with Lanes.ClearLanes's bulk deactivation,
+            // since references to pooled objects are maintained in each Lane's
+            // underlying array before they get cleared.
+            collision.gameObject.GetComponent<Renderer>().enabled = false;
             score++;
         }
 
