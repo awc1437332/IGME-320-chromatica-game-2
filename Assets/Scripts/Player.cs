@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     const float right = 3.33f;
     
     //This is to be utilized later
-    float moveSpeed = .01f;
+    //float moveSpeed = .01f;
 
 
     //This enum is used to determine which lane the player is located in
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     Vector3 jumpForce;
     
     [SerializeField]
-    Vector3 gravityForce = new Vector3(0.0f, -.0009f, 0.0f);
+    Vector3 gravityForce;
 
     [SerializeField]
     bool isGrounded = true;
@@ -54,11 +54,16 @@ public class Player : MonoBehaviour
     //Unity event for death
     public static UnityEvent PlayerDeath = new UnityEvent();
 
+    //Unity event for death
+    public static UnityEvent PlayerDeath = new UnityEvent();
+
     // Start is called before the first frame update
     void Start()
     {
         playerPosition = transform.position;
-        jumpForce = new Vector3(0.0f, .111f, 0.0f);
+        jumpForce = new Vector3(0.0f, 25f, 0.0f);
+        gravityForce = new Vector3(0.0f, -.05f, 0.0f);
+        gravityForce = gravityForce * Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -68,14 +73,14 @@ public class Player : MonoBehaviour
         {
             //This method checks to see if the player is on the ground
             OnGround();
-
+            
             //This code will run if the user presses space or w and the player is on the ground
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isGrounded)
             {
-                velocity = jumpForce;
+                velocity = jumpForce * Time.deltaTime;
                 isGrounded = false;
             }
-
+        
             //This line will update the position vector
             playerPosition += velocity;
 
