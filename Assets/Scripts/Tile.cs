@@ -14,7 +14,7 @@ public class Tile : MonoBehaviour
 
     // Track ResetTile() calls in TileManager by invoking an event to avoid
     // iterating through an array.
-    public static UnityEvent TileReset = new UnityEvent();
+    public static UnityEvent tileReset = new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +58,7 @@ public class Tile : MonoBehaviour
 
         transform.Translate(0f, 0f, 80.0f);
         resetting = true;
-        TileReset.Invoke();
+        tileReset.Invoke();
     }
 
     //CALLED BY MANAGER CLASS
