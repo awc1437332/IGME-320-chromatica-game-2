@@ -50,10 +50,19 @@ public class Player : MonoBehaviour
     //Unity event for death
     //public static UnityEvent PlayerDeath = new UnityEvent();
 
+    [SerializeField]
+    private GameObject progressBar;
+    private FillProgressBar progressBarScript;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerPosition = transform.position;
+        jumpForce = new Vector3(0.0f, 25f, 0.0f);
+        gravityForce = new Vector3(0.0f, -.05f, 0.0f);
+        gravityForce = gravityForce * Time.deltaTime;
+        progressBarScript = progressBar.GetComponent<FillProgressBar>();
     }
 
     // Update is called once per frame
@@ -118,6 +127,9 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Collectible")
         {
             //Debug.Log("You have collided with a collectible");
+
+            // Increment progress bar.
+            progressBarScript.IncrementCollectible();
 
             // Hide the GameObject, but do not deactivate it.
             //
