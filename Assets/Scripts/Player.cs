@@ -35,11 +35,11 @@ public class Player : MonoBehaviour
     Vector3 velocity = Vector3.zero;
 
     //These fields are serailzed to make experimentation easier
-    [SerializeField]
+    //[SerializeField]
     Vector3 jumpForce;
     
-    [SerializeField]
-    Vector3 gravityForce;
+    //[SerializeField]
+    //Vector3 gravityForce;
 
     [SerializeField]
     bool isGrounded = true;
@@ -51,8 +51,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     public bool isActive = true;
 
-    //Unity event for death
-    public static UnityEvent PlayerDeath = new UnityEvent();
+    //This is the rigid body of the player
+    Rigidbody m_RigidBody;
 
     //Unity event for death
     public static UnityEvent PlayerDeath = new UnityEvent();
@@ -62,8 +62,9 @@ public class Player : MonoBehaviour
     {
         playerPosition = transform.position;
         jumpForce = new Vector3(0.0f, 25f, 0.0f);
-        gravityForce = new Vector3(0.0f, -.05f, 0.0f);
-        gravityForce = gravityForce * Time.deltaTime;
+        m_RigidBody = GetComponent<Rigidbody>();
+        //gravityForce = new Vector3(0.0f, -.05f, 0.0f);
+        //gravityForce = gravityForce * Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -77,28 +78,30 @@ public class Player : MonoBehaviour
             //This code will run if the user presses space or w and the player is on the ground
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isGrounded)
             {
-                velocity = jumpForce * Time.deltaTime;
+                //velocity = jumpForce * Time.deltaTime;
+                m_RigidBody.AddForce(jumpForce, ForceMode.Impulse);
+
                 isGrounded = false;
             }
         
             //This line will update the position vector
-            playerPosition += velocity;
+            //playerPosition += velocity;
 
             //This line will change the position of the player
-            transform.position = playerPosition;
+            //transform.position = playerPosition;
 
             //If the player is in the air this will run to apply gravity
-            if (!isGrounded)
-            {
-                velocity += gravityForce;
-            }
+            //if (!isGrounded)
+            //{
+            //    velocity += gravityForce;
+            //}
             //This will run to stabilize the player at the ground level of the tiles
-            else
-            {
-                velocity = Vector3.zero;
-                playerPosition = new Vector3(playerPosition.x, 1.5f, playerPosition.z);
-                transform.position = playerPosition;
-            }
+            //else
+            //{
+            //    velocity = Vector3.zero;
+            //    playerPosition = new Vector3(playerPosition.x, 1.5f, playerPosition.z);
+            //    transform.position = playerPosition;
+            //}
 
 
             //This will run if the input to move left is detected
