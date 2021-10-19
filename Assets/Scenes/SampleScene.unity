@@ -227,7 +227,22 @@ PrefabInstance:
     - target: {fileID: -5361923148705825887, guid: c7a817e12754d5547b2eed1645f0640b,
         type: 3}
       propertyPath: jumpForce.y
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: -2628586081871963680, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_Mass
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2628586081871963680, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_IsKinematic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2628586081871963680, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 947695654350866793, guid: c7a817e12754d5547b2eed1645f0640b,
         type: 3}
@@ -242,7 +257,7 @@ PrefabInstance:
     - target: {fileID: 947695654350866805, guid: c7a817e12754d5547b2eed1645f0640b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 5.53
       objectReference: {fileID: 0}
     - target: {fileID: 947695654350866805, guid: c7a817e12754d5547b2eed1645f0640b,
         type: 3}

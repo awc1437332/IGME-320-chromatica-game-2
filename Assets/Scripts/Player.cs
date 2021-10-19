@@ -29,17 +29,10 @@ public class Player : MonoBehaviour
     #endregion 
 
     #region Variables for jumping
-    //These variables are used to have the player jump
-    Vector3 playerPosition;
-    Vector3 direction = Vector3.zero;
-    Vector3 velocity = Vector3.zero;
 
     //These fields are serailzed to make experimentation easier
-    //[SerializeField]
+    [SerializeField]
     Vector3 jumpForce;
-    
-    //[SerializeField]
-    //Vector3 gravityForce;
 
     [SerializeField]
     bool isGrounded = true;
@@ -52,7 +45,7 @@ public class Player : MonoBehaviour
     public bool isActive = true;
 
     //This is the rigid body of the player
-    Rigidbody m_RigidBody;
+    Rigidbody rb;
 
     //Unity event for death
     public static UnityEvent PlayerDeath = new UnityEvent();
@@ -60,11 +53,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerPosition = transform.position;
-        jumpForce = new Vector3(0.0f, 25f, 0.0f);
-        m_RigidBody = GetComponent<Rigidbody>();
-        //gravityForce = new Vector3(0.0f, -.05f, 0.0f);
-        //gravityForce = gravityForce * Time.deltaTime;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -79,30 +68,10 @@ public class Player : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isGrounded)
             {
                 //velocity = jumpForce * Time.deltaTime;
-                m_RigidBody.AddForce(jumpForce, ForceMode.Impulse);
+                rb.AddForce(jumpForce, ForceMode.Impulse);
 
                 isGrounded = false;
             }
-        
-            //This line will update the position vector
-            //playerPosition += velocity;
-
-            //This line will change the position of the player
-            //transform.position = playerPosition;
-
-            //If the player is in the air this will run to apply gravity
-            //if (!isGrounded)
-            //{
-            //    velocity += gravityForce;
-            //}
-            //This will run to stabilize the player at the ground level of the tiles
-            //else
-            //{
-            //    velocity = Vector3.zero;
-            //    playerPosition = new Vector3(playerPosition.x, 1.5f, playerPosition.z);
-            //    transform.position = playerPosition;
-            //}
-
 
             //This will run if the input to move left is detected
             if (Input.GetKeyDown(KeyCode.A))
@@ -111,13 +80,13 @@ public class Player : MonoBehaviour
                 {
                     lanePosition = activeLane.middle;
 
-                    playerPosition = new Vector3(0.0f, playerPosition.y, playerPosition.z);
+                    transform.position = new Vector3(0.0f, transform.position.y, transform.position.z);
                 }
                 else if (lanePosition == activeLane.middle)
                 {
                     lanePosition = activeLane.left;
 
-                    playerPosition = new Vector3(-3.33f, playerPosition.y, playerPosition.z);
+                    transform.position = new Vector3(-3.33f, transform.position.y, transform.position.z);
                 }
             }
             //This will run if the input to move right is detected
@@ -127,13 +96,13 @@ public class Player : MonoBehaviour
                 {
                     lanePosition = activeLane.middle;
 
-                    playerPosition = new Vector3(0, playerPosition.y, playerPosition.z);
+                    transform.position = new Vector3(0, transform.position.y, transform.position.z);
                 }
                 else if (lanePosition == activeLane.middle)
                 {
                     lanePosition = activeLane.right;
 
-                    playerPosition = new Vector3(3.33f, playerPosition.y, playerPosition.z);
+                    transform.position = new Vector3(3.33f, transform.position.y, transform.position.z);
                 }
             }
         }
@@ -144,7 +113,7 @@ public class Player : MonoBehaviour
     /// I was having trouble getting it to run but this is the framework feel free to edit it.
     /// </summary>
     /// <param name="collision">This parameter is the collision that is being detected and passed through</param>
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Collectible")
         {
@@ -158,7 +127,10 @@ public class Player : MonoBehaviour
             collision.gameObject.GetComponent<Renderer>().enabled = false;
             score++;
         }
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
         if (collision.gameObject.tag == "Obstacle")
         {
             //Debug.Log("You have collided with an obstacle");
