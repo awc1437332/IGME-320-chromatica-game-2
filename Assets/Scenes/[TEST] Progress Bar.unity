@@ -392,7 +392,7 @@ PrefabInstance:
     - target: {fileID: -5361923148705825887, guid: c7a817e12754d5547b2eed1645f0640b,
         type: 3}
       propertyPath: jumpForce.y
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: -5361923148705825887, guid: c7a817e12754d5547b2eed1645f0640b,
         type: 3}
@@ -412,7 +412,7 @@ PrefabInstance:
     - target: {fileID: 947695654350866805, guid: c7a817e12754d5547b2eed1645f0640b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 947695654350866805, guid: c7a817e12754d5547b2eed1645f0640b,
         type: 3}

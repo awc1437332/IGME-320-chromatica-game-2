@@ -58,10 +58,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        playerPosition = transform.position;
-        jumpForce = new Vector3(0.0f, 25f, 0.0f);
-        gravityForce = new Vector3(0.0f, -.05f, 0.0f);
-        gravityForce = gravityForce * Time.deltaTime;
         progressBarScript = progressBar.GetComponent<FillProgressBar>();
     }
 
