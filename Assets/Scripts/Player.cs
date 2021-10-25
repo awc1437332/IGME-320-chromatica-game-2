@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -38,8 +38,7 @@ public class Player : MonoBehaviour
     bool isGrounded = true;
     #endregion
 
-    [SerializeField]
-    public float score = 0;
+    public int Score { get; private set; }
 
     [SerializeField]
     public bool isActive = true;
@@ -50,10 +49,22 @@ public class Player : MonoBehaviour
     //Unity event for death
     public static UnityEvent PlayerDeath = new UnityEvent();
 
+    [SerializeField]
+    private GameObject progressBar;
+    private FillProgressBar progressBarScript;
+
+    public int Level { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        progressBarScript = progressBar.GetComponent<FillProgressBar>();
+        Score = 0;
+        Level = 1;
+
+        // Increment level when progress bar is filled.
+        FillProgressBar.levelUp.AddListener(LevelUp);
     }
 
     // Update is called once per frame
@@ -115,17 +126,27 @@ public class Player : MonoBehaviour
     /// <param name="collision">This parameter is the collision that is being detected and passed through</param>
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Collectible")
+        switch (collision.gameObject.tag)
         {
-            //Debug.Log("You have collided with a collectible");
+            case "Collectible":
+                //Debug.Log("You have collided with a collectible");
 
-            // Hide the GameObject, but do not deactivate it.
-            //
-            // Prevents interfering with Lanes.ClearLanes's bulk deactivation,
-            // since references to pooled objects are maintained in each Lane's
-            // underlying array before they get cleared.
-            collision.gameObject.GetComponent<Renderer>().enabled = false;
-            score++;
+                // Increment progress bar.
+                progressBarScript.IncrementCollectible();
+
+                // Hide the GameObject, but do not deactivate it.
+                //
+                // Prevents interfering with Lanes.ClearLanes's bulk deactivation,
+                // since references to pooled objects are maintained in each Lane's
+                // underlying array before they get cleared.
+                collision.gameObject.GetComponent<Renderer>().enabled = false;
+                Score += (int)(Level * Level);
+                Debug.Log(Score);
+                break;
+            case "JumpTrigger":
+                // Increment progress bar.
+                progressBarScript.IncrementJump();
+                break;
         }
     }
 
@@ -160,5 +181,13 @@ public class Player : MonoBehaviour
     private void TogglePlayer(bool value)
     {
         isActive = value;
+    }
+
+    /// <summary>
+    /// Increments player level.
+    /// </summary>
+    private void LevelUp()
+    {
+        Level++;
     }
 }

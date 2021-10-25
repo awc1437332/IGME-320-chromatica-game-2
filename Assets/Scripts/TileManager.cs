@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class TileManager : MonoBehaviour
@@ -80,7 +79,7 @@ public class TileManager : MonoBehaviour
         }
 
         // Populate a tile with Obstacle objects whenever TileReset is invoked.
-        Tile.TileReset.AddListener(FillTile);
+        Tile.tileReset.AddListener(FillTile);
     }
 
     /// <summary>
