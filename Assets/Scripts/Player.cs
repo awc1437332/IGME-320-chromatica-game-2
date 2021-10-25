@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
                 // underlying array before they get cleared.
                 collision.gameObject.GetComponent<Renderer>().enabled = false;
                 Score += (int)(Level * Level);
-                Debug.Log(Score);
+                //Debug.Log(Score);
                 break;
             case "JumpTrigger":
                 // Increment progress bar.

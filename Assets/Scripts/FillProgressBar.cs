@@ -86,7 +86,7 @@ public class FillProgressBar : MonoBehaviour
     private void Reset()
     {
         CurrentValue = 0f;
-        Debug.Log("Level Up!");
+        //Debug.Log("Level Up!");
     }
 
     /// <summary>
