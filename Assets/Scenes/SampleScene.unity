@@ -1657,6 +1657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   tileManagerObject: {fileID: 2021033854}
+  playerObject: {fileID: 2074289183}
 --- !u!4 &1462410695
 Transform:
   m_ObjectHideFlags: 0
@@ -2437,4 +2438,10 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5663500589887034356, guid: 5d606fd981e88f84ab91a328d3f15fac,
     type: 3}
   m_PrefabInstance: {fileID: 479867467}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2074289183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 947695654350866793, guid: c7a817e12754d5547b2eed1645f0640b,
+    type: 3}
+  m_PrefabInstance: {fileID: 594731964}
   m_PrefabAsset: {fileID: 0}
