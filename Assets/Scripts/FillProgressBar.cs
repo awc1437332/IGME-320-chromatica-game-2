@@ -36,7 +36,14 @@ public class FillProgressBar : MonoBehaviour
     /// Value to decrement progress by each frame.
     /// </summary>
     [SerializeField]
-    private float decrementFactor;
+    private float decrementProgressFactor;
+
+    /// <summary>
+    /// Rate at which to increase progress decrements each time the player levels up.
+    /// </summary>
+    [SerializeField]
+    private float progressDecrementScaleFactor;
+    
 
     private float currentValue;
 
@@ -60,13 +67,17 @@ public class FillProgressBar : MonoBehaviour
     public void IncrementCollectible()
     {
         // Use the set property, since it updates the slider as well.
-        CurrentValue += collectibleIncrementFactor;
+        // Multiply by scaleDecrementFactor for balance against increased
+        // decrement rate.
+        CurrentValue += collectibleIncrementFactor * (progressDecrementScaleFactor * 1.75f);
     }
 
     public void IncrementJump()
     {
         // Use the set property, since it updates the slider as well.
-        CurrentValue += jumpIncrementFactor;
+        // Multiply by scaleDecrementFactor for balance against increased
+        // decrement rate.
+        CurrentValue += jumpIncrementFactor * (progressDecrementScaleFactor * 1.75f);
     }
 
     /// <summary>
@@ -78,6 +89,19 @@ public class FillProgressBar : MonoBehaviour
         Debug.Log("Level Up!");
     }
 
+    /// <summary>
+    /// Increases the difficulty by speeding the game up.
+    /// </summary>
+    private void SpeedUp()
+    {
+        Time.timeScale += 0.05f;
+    }
+
+    private void ScaleDecrement()
+    {
+        decrementProgressFactor *= progressDecrementScaleFactor;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,6 +109,8 @@ public class FillProgressBar : MonoBehaviour
 
         // Reset the progress bar when the player levels up.
         levelUp.AddListener(Reset);
+        levelUp.AddListener(SpeedUp);
+        levelUp.AddListener(ScaleDecrement);
     }
 
     // Update is called once per frame
@@ -93,6 +119,6 @@ public class FillProgressBar : MonoBehaviour
         //// Testing functionality.
         //CurrentValue += 0.0043f;
 
-        CurrentValue -= decrementFactor;
+        CurrentValue -= decrementProgressFactor;
     }
 }
