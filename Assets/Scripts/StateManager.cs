@@ -22,6 +22,13 @@ public class StateManager : MonoBehaviour
     GameObject pauseScreen;
     GameObject endScreen;
 
+    //This field is a reference to the player object
+    [SerializeField]
+    GameObject playerObject;
+
+    //This is a reference to the player's rigidbody
+    Rigidbody rb_Player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +36,9 @@ public class StateManager : MonoBehaviour
 
         //Sets the current state to Gameplay for MVI purposes
         currentState = GameState.Start;
+
+        //This line declares the rb_player as the rigidbody attached to the player
+        rb_Player = playerObject.GetComponent<Rigidbody>();
 
         //Adds a listener to change the state when the player dies
         Player.PlayerDeath.AddListener(delegate { EndGame(true); });
@@ -89,6 +99,9 @@ public class StateManager : MonoBehaviour
 
         tileManager.ToggleTiles(true);
 
+        //This line sets the isKinematic value to false to have the physics start working on it again.
+        rb_Player.isKinematic = false;
+
         //Disables the pause and end screens
         pauseScreen.SetActive(false);
         endScreen.SetActive(false);
@@ -100,6 +113,9 @@ public class StateManager : MonoBehaviour
         ChangeState(GameState.Pause);
 
         tileManager.ToggleTiles(false);
+
+        //This line sets the isKinematic value to true to stop the physics from working on it.
+        rb_Player.isKinematic = true;
 
         //Makes the pause screen visible and interactible
         pauseScreen.SetActive(true);
