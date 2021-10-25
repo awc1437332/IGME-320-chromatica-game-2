@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     Rigidbody rb;
 
     //Unity event for death
-    //public static UnityEvent PlayerDeath = new UnityEvent();
+    public static UnityEvent PlayerDeath = new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
