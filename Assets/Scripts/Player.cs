@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     bool isGrounded = true;
     #endregion
 
-    public int Score { get; private set; }
+    public float Score { get; private set; }
 
     [SerializeField]
     public bool isActive = true;
@@ -53,6 +53,18 @@ public class Player : MonoBehaviour
     private GameObject progressBar;
     private FillProgressBar progressBarScript;
 
+    /// <summary>
+    /// Value to increment score by each frame.
+    /// </summary>
+    [SerializeField]
+    private float incrementScoreFactor;
+
+    /// <summary>
+    /// Rate at which to scale score increments each time the player levels up.
+    /// </summary>
+    [SerializeField]
+    private float scoreIncrementScaleFactor;
+
     public int Level { get; private set; }
 
     // Start is called before the first frame update
@@ -65,6 +77,7 @@ public class Player : MonoBehaviour
 
         // Increment level when progress bar is filled.
         FillProgressBar.levelUp.AddListener(LevelUp);
+        FillProgressBar.levelUp.AddListener(ScaleIncrement);
     }
 
     // Update is called once per frame
@@ -116,6 +129,8 @@ public class Player : MonoBehaviour
                     transform.position = new Vector3(3.33f, transform.position.y, transform.position.z);
                 }
             }
+
+            Score += incrementScoreFactor;
         }
     }
 
@@ -189,5 +204,10 @@ public class Player : MonoBehaviour
     private void LevelUp()
     {
         Level++;
+    }
+
+    private void ScaleIncrement()
+    {
+        incrementScoreFactor *= scoreIncrementScaleFactor;
     }
 }

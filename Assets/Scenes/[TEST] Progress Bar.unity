@@ -400,6 +400,21 @@ PrefabInstance:
       propertyPath: progressBar
       value: 
       objectReference: {fileID: 895315369}
+    - target: {fileID: -5361923148705825887, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: incrementScoreFactor
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: -5361923148705825887, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: scaleIncrementFactor
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5361923148705825887, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: scoreIncrementScaleFactor
+      value: 1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 947695654350866793, guid: c7a817e12754d5547b2eed1645f0640b,
         type: 3}
       propertyPath: m_Name
@@ -956,6 +971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   tileManagerObject: {fileID: 2021033854}
+  playerObject: {fileID: 1196143122}
 --- !u!4 &1462410695
 Transform:
   m_ObjectHideFlags: 0
@@ -1265,6 +1281,21 @@ PrefabInstance:
         type: 3}
       propertyPath: jumpIncrementFactor
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7679836084730753083, guid: 244f1f3910c1e8546a20f814b2e20ce2,
+        type: 3}
+      propertyPath: decrementProgressFactor
+      value: 0.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7679836084730753083, guid: 244f1f3910c1e8546a20f814b2e20ce2,
+        type: 3}
+      propertyPath: scaleDecrementFactor
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7679836084730753083, guid: 244f1f3910c1e8546a20f814b2e20ce2,
+        type: 3}
+      propertyPath: progressDecrementScaleFactor
+      value: 1.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 244f1f3910c1e8546a20f814b2e20ce2, type: 3}
