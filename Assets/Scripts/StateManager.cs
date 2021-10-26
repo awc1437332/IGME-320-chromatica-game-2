@@ -13,7 +13,7 @@ public enum GameState
 
 public class StateManager : MonoBehaviour
 {
-    public GameState currentState;
+    public GameState currentState = GameState.Start;
 
     public GameObject tileManagerObject;
     private TileManager tileManager;
@@ -25,20 +25,20 @@ public class StateManager : MonoBehaviour
     //This field is a reference to the player object
     [SerializeField]
     GameObject playerObject;
-
-    //This is a reference to the player's rigidbody
-    Rigidbody rb_Player;
+    
+    private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Creates a reference to the tile manager
         tileManager = tileManagerObject.GetComponent<TileManager>();
 
-        //Sets the current state to Gameplay for MVI purposes
-        currentState = GameState.Start;
+        //Sets the player script
+        player = playerObject.GetComponent<Player>();
 
-        //This line declares the rb_player as the rigidbody attached to the player
-        rb_Player = playerObject.GetComponent<Rigidbody>();
+        //Disables the player and tiles to start
+        player.TogglePlayer(false);
 
         //Adds a listener to change the state when the player dies
         Player.PlayerDeath.AddListener(delegate { EndGame(true); });
@@ -86,6 +86,9 @@ public class StateManager : MonoBehaviour
 
         //NOTE: ADD CODE TO RESET TILES ETC. LATER
 
+        //Enables the player
+        player.TogglePlayer(true);
+
         tileManager.ToggleTiles(true);
 
         //Disables the start screen
@@ -99,8 +102,8 @@ public class StateManager : MonoBehaviour
 
         tileManager.ToggleTiles(true);
 
-        //This line sets the isKinematic value to false to have the physics start working on it again.
-        rb_Player.isKinematic = false;
+        //Disables the player
+        player.TogglePlayer(false);
 
         //Disables the pause and end screens
         pauseScreen.SetActive(false);
@@ -114,8 +117,8 @@ public class StateManager : MonoBehaviour
 
         tileManager.ToggleTiles(false);
 
-        //This line sets the isKinematic value to true to stop the physics from working on it.
-        rb_Player.isKinematic = true;
+        //Disables the player
+        player.TogglePlayer(false);
 
         //Makes the pause screen visible and interactible
         pauseScreen.SetActive(true);
