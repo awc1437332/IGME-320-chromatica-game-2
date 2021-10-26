@@ -23,7 +23,7 @@ public class Tile : MonoBehaviour
         transform.position = new Vector3(0f, 0f, 20.0f * tileOrder);
 
         //Starts the tile as active for debugging purposes
-        isActive = true;
+        //isActive = true;
     }
 
     // Update is called once per frame
