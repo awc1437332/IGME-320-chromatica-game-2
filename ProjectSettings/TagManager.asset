@@ -8,6 +8,7 @@ TagManager:
   - Collectible
   - Zombie
   - JumpTrigger
+  - Shop
   layers:
   - Default
   - TransparentFX

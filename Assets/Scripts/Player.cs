@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     public float Score { get; private set; }
 
     [SerializeField]
-    public bool isActive = true;
+    public bool isActive = false;
 
     //This is the rigid body of the player
     Rigidbody rb;
@@ -173,6 +173,12 @@ public class Player : MonoBehaviour
             TogglePlayer(false);
             PlayerDeath.Invoke();
         }
+        else if (collision.gameObject.tag == "Shop")
+        {
+            collision.gameObject.GetComponent<Shop>().ToggleShop(true);
+
+            TogglePlayer(false);
+        }
     }
 
     /// <summary>
@@ -193,9 +199,14 @@ public class Player : MonoBehaviour
     }
 
     //Allows changing the state of the player between active and inactive
-    private void TogglePlayer(bool value)
+    public void TogglePlayer(bool value)
     {
+        //Prevents the player from moving
         isActive = value;
+        rb.isKinematic = !value;
+
+        //Disables the player's animation
+        GetComponent<Animator>().enabled = value;
     }
 
     /// <summary>
