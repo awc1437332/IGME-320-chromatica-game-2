@@ -99,8 +99,13 @@ public class StateManager : MonoBehaviour
 
         tileManager.ToggleTiles(true);
 
+<<<<<<< Updated upstream
         //This line sets the isKinematic value to false to have the physics start working on it again.
         rb_Player.isKinematic = false;
+=======
+        //Disables the player
+        player.TogglePlayer(true);
+>>>>>>> Stashed changes
 
         //Disables the pause and end screens
         pauseScreen.SetActive(false);
