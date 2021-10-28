@@ -33,7 +33,7 @@ public class Shop : MonoBehaviour
     void Start()
     {
         //Assigns the player and tileManager scripts to references
-        player = GameObject.Find("PlayerModel").GetComponent<Player>();
+        player = GameObject.Find("Player").GetComponent<Player>();
         tileManager = GameObject.Find("Tile Manager").GetComponent<TileManager>();
 
         //Disables the shop screen
