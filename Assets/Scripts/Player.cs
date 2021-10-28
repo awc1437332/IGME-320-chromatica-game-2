@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,6 +43,23 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public bool isActive = false;
+
+    [SerializeField]
+    public bool hasDoubleJump = false;
+    private bool canDoubleJump = false;
+    public float doubleJumpTimer;
+    private const float doubleJumpTime = 20.0f;
+
+    [SerializeField]
+    public bool hasExtraLife = false;
+    public bool isInvincible = false;
+    public float invincibilityTimer;
+    private const float invincibilityTime = 1.0f;
+
+    [SerializeField]
+    public bool hasDoubleCollectibles = false;
+    public float doubleCollectibleTimer;
+    private const float doubleCollectibleTime = 20.0f;
 
     //This is the rigid body of the player
     Rigidbody rb;
@@ -89,12 +107,24 @@ public class Player : MonoBehaviour
             OnGround();
             
             //This code will run if the user presses space or w and the player is on the ground
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isGrounded)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
             {
-                //velocity = jumpForce * Time.deltaTime;
-                rb.AddForce(jumpForce, ForceMode.Impulse);
+                //Regular Jump
+                if (isGrounded)
+                {
+                    //velocity = jumpForce * Time.deltaTime;
+                    rb.AddForce(jumpForce, ForceMode.Impulse);
 
-                isGrounded = false;
+                    isGrounded = false;
+                }
+                //Double Jump
+                else if (!isGrounded && (hasDoubleJump && canDoubleJump))
+                {
+                    //velocity = jumpForce * Time.deltaTime;
+                    rb.AddForce(jumpForce, ForceMode.Impulse);
+
+                    canDoubleJump = false;
+                }
             }
 
             //This will run if the input to move left is detected
@@ -131,6 +161,47 @@ public class Player : MonoBehaviour
             }
 
             Score += incrementScoreFactor;
+
+            //If the player has the double jump powerup, 
+            if (hasDoubleJump)
+            {
+                //Reduce the timer per frame
+                doubleJumpTimer -= Time.deltaTime;
+
+                //If time runs out,
+                if (doubleJumpTimer <= 0)
+                {
+                    //Remove the double jump powerup
+                    hasDoubleJump = false;
+                }
+            }
+
+            //If the player has the double collectible powerup, 
+            if (hasDoubleCollectibles)
+            {
+                //Reduce the timer per frame
+                doubleCollectibleTimer -= Time.deltaTime;
+
+                //If time runs out,
+                if (doubleCollectibleTimer <= 0)
+                {
+                    //Remove the double collectible powerup
+                    hasDoubleCollectibles = false;
+                }
+            }
+        }
+        else if (isInvincible)
+        {
+            //Reduce the timer per frame
+            invincibilityTimer -= Time.deltaTime;
+
+            //If time runs out,
+            if (invincibilityTimer <= 0)
+            {
+                //Remove the invincibility and give control back to the player
+                isInvincible = false;
+                TogglePlayer(true);
+            }
         }
     }
 
@@ -155,7 +226,7 @@ public class Player : MonoBehaviour
                 // since references to pooled objects are maintained in each Lane's
                 // underlying array before they get cleared.
                 collision.gameObject.GetComponent<Renderer>().enabled = false;
-                Score += (int)(Level * Level);
+                Score += (Convert.ToInt32(hasDoubleCollectibles) + 1) * (int)(Level * Level);
                 //Debug.Log(Score);
                 break;
             case "JumpTrigger":
@@ -167,17 +238,31 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Obstacle")
+        //Does not check collision if the player is invincible
+        if (!isInvincible)
         {
-            //Debug.Log("You have collided with an obstacle");
-            TogglePlayer(false);
-            PlayerDeath.Invoke();
-        }
-        else if (collision.gameObject.tag == "Shop")
-        {
-            collision.gameObject.GetComponent<Shop>().ToggleShop(true);
+            if (collision.gameObject.tag == "Obstacle")
+            {
+                //Debug.Log("You have collided with an obstacle");
 
-            TogglePlayer(false);
+                //Consumes the player's extra life if they have one and start the invincibility timer
+                if (hasExtraLife)
+                {
+                    hasExtraLife = false;
+                    isInvincible = true;
+                    TogglePlayer(false);
+                    return;
+                }
+
+                TogglePlayer(false);
+                PlayerDeath.Invoke();
+            }
+            else if (collision.gameObject.tag == "Shop")
+            {
+                collision.gameObject.GetComponent<Shop>().ToggleShop(true);
+
+                TogglePlayer(false);
+            }
         }
     }
 
@@ -189,6 +274,7 @@ public class Player : MonoBehaviour
         if(transform.position.y <= 1.5)
         {
             isGrounded = true;
+            canDoubleJump = true;
             //Debug.Log("Player is on the ground");
         }
         else
@@ -207,6 +293,33 @@ public class Player : MonoBehaviour
 
         //Disables the player's animation
         GetComponent<Animator>().enabled = value;
+    }
+
+    //Gives the player a double jump from the shop
+    public void ActivateDoubleJump(int price)
+    {
+        //Pays the cost and gives the player double jump
+        Score -= price;
+        hasDoubleJump = true;
+        doubleJumpTimer = doubleJumpTime;
+    }
+
+    //Gives the player an extra life from the shop
+    public void ActivateExtraLife(int price)
+    {
+        //Pays the cost and gives the player an extra life
+        Score -= price;
+        hasExtraLife = true;
+        invincibilityTimer = invincibilityTime;
+    }
+
+    //Gives the player a double collectibles boost from the shop
+    public void ActivateDoubleCollectibles(int price)
+    {
+        //Pays the cost and gives the player double jump
+        Score -= price;
+        hasDoubleCollectibles = true;
+        doubleCollectibleTimer = doubleCollectibleTime;
     }
 
     /// <summary>
