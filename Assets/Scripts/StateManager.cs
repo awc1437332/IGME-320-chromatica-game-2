@@ -110,7 +110,7 @@ public class StateManager : MonoBehaviour
         tileManager.ToggleTiles(true);
 
         //Disables the player
-        player.TogglePlayer(false);
+        player.TogglePlayer(true);
 
         //Disables the pause and end screens
         pauseScreen.SetActive(false);
