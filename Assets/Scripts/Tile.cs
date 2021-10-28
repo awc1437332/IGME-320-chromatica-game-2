@@ -56,7 +56,7 @@ public class Tile : MonoBehaviour
     {
         //Generate a new tile with the manager that will call ChangeMesh()
 
-        transform.Translate(0f, 0f, 80.0f);
+        transform.Translate(0f, 0f, 110.55f);
         resetting = true;
         tileReset.Invoke();
     }
