@@ -32,12 +32,6 @@ public class TileManager : MonoBehaviour
     private GameObject collectibleTemplate;
 
     /// <summary>
-    /// Re-usable shop prefab.
-    /// </summary>
-    [SerializeField]
-    private GameObject shop;
-
-    /// <summary>
     /// [PLACEHOLDER] Template prefab representing Tile objects.
     /// </summary>
     [SerializeField]
@@ -273,31 +267,6 @@ public class TileManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Populates a resetting tile with a shop
-    /// </summary>
-    private void PlaceShop(int resettingTileIndex, int lane)
-    {
-        // Set coordinates of shop to be placed.
-        // x = take x of resetting tile and move shop into the correct
-        // lane by shifting it the appropriate number of widths.
-        // lane - 1 to prevent spawning off-tile.
-        float x = (lane - 1) * obstacleTemplate.transform.localScale.x
-                    + tiles[resettingTileIndex].transform.position.x;
-
-        float z = tiles[resettingTileIndex].transform.position.z;
-
-        // If the request is successful, update the shop instance's
-        // position and rotation accordingly.
-        shop.transform.position = new Vector3(x, 3, z);
-
-        // Make the shop a child of the Tile so they move together.
-        shop.transform.parent = tiles[resettingTileIndex].transform;
-
-        //Sets the shop as active
-        shop.SetActive(true);
-    }
-
-    /// <summary>
     /// Populates a resetting tile with Obstacles and Collectibles.
     /// </summary>
     public void FillTile()
@@ -340,16 +309,7 @@ public class TileManager : MonoBehaviour
             // obstacle at that lane.
             else
             {
-                //1% Chance to spawn the shop instead
-                if (Random.Range(0, 100) > 0)
-                {
-                    laneScripts[resettingTileIndex].obstacles[i] = PlaceObstacle(resettingTileIndex, i);
-                }
-                //Places a shop if there is not one already active
-                else if (!shop.activeInHierarchy)
-                {
-                    PlaceShop(resettingTileIndex, i);
-                }
+                laneScripts[resettingTileIndex].obstacles[i] = PlaceObstacle(resettingTileIndex, i);
             }
         }
     }
