@@ -20,7 +20,7 @@ public class Tile : MonoBehaviour
     void Start()
     {
         //Sets the starting position for this tile
-        transform.position = new Vector3(0f, 0f, 20.0f * tileOrder);
+        transform.position = new Vector3(0f, 0f, 36.85f * tileOrder);
 
         //Starts the tile as active for debugging purposes
         //isActive = true;

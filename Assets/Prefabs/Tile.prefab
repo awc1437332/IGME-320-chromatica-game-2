@@ -411,7 +411,7 @@ GameObject:
   - component: {fileID: 5779585906497040157}
   - component: {fileID: 6461328804287689941}
   m_Layer: 0
-  m_Name: Tile (4)
+  m_Name: Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -426,7 +426,7 @@ Transform:
   m_GameObject: {fileID: 1787255608495238038}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.1, y: 13.341055, z: 16.57}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 5, y: 5, z: 5.5}
   m_Children:
   - {fileID: 3295721308741333706}
   - {fileID: 3019923568747424457}
@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cee0f784ac46954898a4dff238651f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
+  isActive: 1
   resetting: 0
   tileSpeed: 10
   tileOrder: 0
@@ -1951,6 +1951,7 @@ GameObject:
   - component: {fileID: 3295721308741333706}
   - component: {fileID: 6326530878728288073}
   - component: {fileID: 6887196912209741264}
+  - component: {fileID: 6321383633821042088}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -2019,6 +2020,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6321383633821042088
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7110922663025924664}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 224.76799, y: 3.1149297, z: 232.55144}
+  m_Center: {x: -0.0000076293945, y: 0, z: 0}
 --- !u!1 &7612694696722721427
 GameObject:
   m_ObjectHideFlags: 0
