@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -18,9 +19,17 @@ public class StateManager : MonoBehaviour
     public GameObject tileManagerObject;
     private TileManager tileManager;
 
-    GameObject startScreen;
-    GameObject pauseScreen;
-    GameObject endScreen;
+    [SerializeField]
+    private GameObject startScreen;
+
+    [SerializeField]
+    private GameObject pauseScreen;
+
+    [SerializeField]
+    private GameObject endScreen;
+
+    [SerializeField]
+    private Text scoreText;
 
     //This field is a reference to the player object
     [SerializeField]
@@ -84,8 +93,6 @@ public class StateManager : MonoBehaviour
     {
         ChangeState(GameState.Gameplay);
 
-        //NOTE: ADD CODE TO RESET TILES ETC. LATER
-
         //Enables the player
         player.TogglePlayer(true);
 
@@ -133,7 +140,8 @@ public class StateManager : MonoBehaviour
 
         if (displayScore)
         {
-            //Setup for score display
+            scoreText.text = "Score: " + player.Score.ToString();
+            endScreen.SetActive(true);
         }
         else
         {
@@ -141,5 +149,11 @@ public class StateManager : MonoBehaviour
             pauseScreen.SetActive(false);
             endScreen.SetActive(true);
         }
+    }
+
+    public void RestartGame()
+    {
+        //Resets the scene entirely
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
