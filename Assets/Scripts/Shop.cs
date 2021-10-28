@@ -29,6 +29,9 @@ public class Shop : MonoBehaviour
         //Disables the shop screen
         shopScreen.SetActive(false);
 
+        //Starts the shop as inactive
+        gameObject.SetActive(false);
+
         //Sets the timer
         timer = startingTime;
     }
