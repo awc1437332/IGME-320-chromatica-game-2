@@ -16,6 +16,16 @@ public class Shop : MonoBehaviour
 
     private float timer = 0;
 
+    //Pricing fields
+    [SerializeField]
+    private const int doubleJumpPrice = 50;
+
+    [SerializeField]
+    private const int extraLifePrice = 100;
+
+    [SerializeField]
+    private const int doubleCollectiblesPrice = 20;
+
     [SerializeField]
     float startingTime = 4;
 
@@ -42,14 +52,13 @@ public class Shop : MonoBehaviour
         if (isOpen)
         {
             //Updates the text on the UI based on deltaTime
-            timerText.text = Mathf.Floor(timer).ToString();
+            timerText.text = "Time Left: " + Mathf.Floor(timer).ToString();
             timer -= Time.deltaTime;
 
             //If the timer exceeds the maximum amount of time, disable the shop
             if (timer <= 0)
             {
                 ToggleShop(false);
-                print("Time is up");
             }
         }
     }
@@ -88,10 +97,53 @@ public class Shop : MonoBehaviour
         }
     }
 
-    //Simply a dummy function for testing Shop UI controls
-    public void DummyGivePowerup()
+    //Gives the player the specified powerup
+    public void GivePowerup(string power)
     {
-        ToggleShop(false);
-        print("Powerup Given");
+        //Determine which power to give to the player
+        switch (power)
+        {
+            case "Double Jump":
+                //Voids the transaction if the player does not have enough points
+                if (player.Score <= doubleJumpPrice)
+                {
+                    break;
+                }
+
+                //Gives the player the powerup
+                player.ActivateDoubleJump(doubleJumpPrice);
+
+                //Disables the shop
+                ToggleShop(false);
+                break;
+
+            case "Extra Life":
+                //Voids the transaction if the player does not have enough points
+                if (player.Score <= extraLifePrice)
+                {
+                    break;
+                }
+
+                //Gives the player the powerup
+                player.ActivateExtraLife(extraLifePrice);
+
+                //Disables the shop
+                ToggleShop(false);
+                break;
+
+            case "Double Collectibles":
+                //Voids the transaction if the player does not have enough points
+                if (player.Score <= doubleCollectiblesPrice)
+                {
+                    break;
+                }
+
+                //Gives the player the powerup
+                player.ActivateDoubleCollectibles(doubleCollectiblesPrice);
+
+                //Disables the shop
+                ToggleShop(false);
+                break;
+        }
     }
 }
