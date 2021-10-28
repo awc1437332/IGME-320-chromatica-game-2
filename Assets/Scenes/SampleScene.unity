@@ -122,6 +122,7 @@ NavMeshSettings:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &140043150
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,6 +275,8 @@ BoxCollider:
   m_Center: {x: 0, y: 1.5, z: 0}
 =======
 >>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
+=======
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
 --- !u!1 &382596606
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +310,11 @@ Transform:
   - {fileID: 750277474}
   m_Father: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 8
+=======
+  m_RootOrder: 6
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
 =======
   m_RootOrder: 6
 >>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
@@ -488,7 +495,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 10
+=======
+      value: 9
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
 =======
       value: 9
 >>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
@@ -649,7 +660,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 11
+=======
+      value: 10
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
 =======
       value: 10
 >>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
@@ -3061,7 +3076,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 9
+=======
+      value: 8
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
 =======
       value: 8
 >>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
@@ -3105,7 +3124,10 @@ GameObject:
   m_PrefabInstance: {fileID: 479867467}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
 --- !u!1 &919132147597206194 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7623465524851938331, guid: c7a817e12754d5547b2eed1645f0640b,
