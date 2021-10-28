@@ -288,7 +288,7 @@ public class TileManager : MonoBehaviour
 
         // If the request is successful, update the shop instance's
         // position and rotation accordingly.
-        shop.transform.position = new Vector3(x, 3, z);
+        shop.transform.position = new Vector3(x, 7, z);
 
         // Make the shop a child of the Tile so they move together.
         shop.transform.parent = tiles[resettingTileIndex].transform;
@@ -341,7 +341,7 @@ public class TileManager : MonoBehaviour
             else
             {
                 //1% Chance to spawn the shop instead
-                if (Random.Range(0, 100) > 0)
+                if (Random.Range(0, 5) > 0)
                 {
                     laneScripts[resettingTileIndex].obstacles[i] = PlaceObstacle(resettingTileIndex, i);
                 }

@@ -26,6 +26,9 @@ public class StateManager : MonoBehaviour
     private GameObject pauseScreen;
 
     [SerializeField]
+    private GameObject gameScreen;
+
+    [SerializeField]
     private GameObject endScreen;
 
     [SerializeField]
@@ -57,8 +60,9 @@ public class StateManager : MonoBehaviour
         pauseScreen = GameObject.Find("UI/PauseScreen");
         endScreen = GameObject.Find("UI/EndScreen");
 
-        //Disables the pause and end screens
+        //Disables the pause, game, and end screens
         pauseScreen.SetActive(false);
+        gameScreen.SetActive(false);
         endScreen.SetActive(false);
     }
 
@@ -100,6 +104,7 @@ public class StateManager : MonoBehaviour
 
         //Disables the start screen
         startScreen.SetActive(false);
+        gameScreen.SetActive(true);
     }
 
     //Resumes the current game
@@ -112,9 +117,11 @@ public class StateManager : MonoBehaviour
         //Disables the player
         player.TogglePlayer(false);
 
-        //Disables the pause and end screens
+        //Enables the game screen
+        gameScreen.SetActive(true);
+
+        //Disables the pause screen
         pauseScreen.SetActive(false);
-        endScreen.SetActive(false);
     }
 
     //Pauses the game and disables tiles
@@ -126,6 +133,9 @@ public class StateManager : MonoBehaviour
 
         //Disables the player
         player.TogglePlayer(false);
+
+        //Disables the game screen
+        gameScreen.SetActive(false);
 
         //Makes the pause screen visible and interactible
         pauseScreen.SetActive(true);
@@ -140,7 +150,7 @@ public class StateManager : MonoBehaviour
 
         if (displayScore)
         {
-            scoreText.text = "Score: " + player.Score.ToString();
+            scoreText.text = "Score: " + player.Score;
             endScreen.SetActive(true);
         }
         else

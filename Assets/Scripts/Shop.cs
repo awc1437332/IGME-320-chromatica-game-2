@@ -18,13 +18,13 @@ public class Shop : MonoBehaviour
 
     //Pricing fields
     [SerializeField]
-    private const int doubleJumpPrice = 50;
+    private const int doubleJumpPrice = 30;
 
     [SerializeField]
     private const int extraLifePrice = 100;
 
     [SerializeField]
-    private const int doubleCollectiblesPrice = 20;
+    private const int doubleCollectiblesPrice = 15;
 
     [SerializeField]
     float startingTime = 4;
@@ -52,7 +52,7 @@ public class Shop : MonoBehaviour
         if (isOpen)
         {
             //Updates the text on the UI based on deltaTime
-            timerText.text = "Time Left: " + Mathf.Floor(timer).ToString();
+            timerText.text = "Time Left: " + Mathf.Floor(timer);
             timer -= Time.deltaTime;
 
             //If the timer exceeds the maximum amount of time, disable the shop
@@ -90,7 +90,7 @@ public class Shop : MonoBehaviour
             shopScreen.SetActive(false);
 
             //Reset the timer
-            timer = 0.0f;
+            timer = startingTime;
 
             //Disable the shop object
             gameObject.SetActive(false);

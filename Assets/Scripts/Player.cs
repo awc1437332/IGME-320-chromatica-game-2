@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -47,19 +48,26 @@ public class Player : MonoBehaviour
     [SerializeField]
     public bool hasDoubleJump = false;
     private bool canDoubleJump = false;
-    public float doubleJumpTimer;
-    private const float doubleJumpTime = 20.0f;
+    private float doubleJumpTimer;
+    public const float doubleJumpTime = 20.0f;
 
     [SerializeField]
     public bool hasExtraLife = false;
     public bool isInvincible = false;
-    public float invincibilityTimer;
-    private const float invincibilityTime = 1.0f;
+    private float invincibilityTimer;
+    public const float invincibilityTime = 0.5f;
 
     [SerializeField]
     public bool hasDoubleCollectibles = false;
-    public float doubleCollectibleTimer;
-    private const float doubleCollectibleTime = 20.0f;
+    private float doubleCollectibleTimer;
+    public const float doubleCollectibleTime = 20.0f;
+
+    [SerializeField]
+    public Text doubleJumpStatus;
+    [SerializeField]
+    public Text extraLifeStatus;
+    [SerializeField]
+    public Text doubleCollectiblesStatus;
 
     //This is the rigid body of the player
     Rigidbody rb;
@@ -96,6 +104,11 @@ public class Player : MonoBehaviour
         // Increment level when progress bar is filled.
         FillProgressBar.levelUp.AddListener(LevelUp);
         FillProgressBar.levelUp.AddListener(ScaleIncrement);
+
+        //Sets the powerup timers
+        doubleJumpTimer = doubleJumpTime;
+        invincibilityTimer = invincibilityTime;
+        doubleCollectibleTimer = doubleCollectibleTime;
     }
 
     // Update is called once per frame
@@ -167,12 +180,15 @@ public class Player : MonoBehaviour
             {
                 //Reduce the timer per frame
                 doubleJumpTimer -= Time.deltaTime;
+                doubleJumpStatus.text = "Double Jump: " + Mathf.Floor(doubleJumpTimer);
 
                 //If time runs out,
                 if (doubleJumpTimer <= 0)
                 {
                     //Remove the double jump powerup
                     hasDoubleJump = false;
+                    doubleJumpTimer = doubleJumpTime;
+                    doubleJumpStatus.text = "";
                 }
             }
 
@@ -181,12 +197,15 @@ public class Player : MonoBehaviour
             {
                 //Reduce the timer per frame
                 doubleCollectibleTimer -= Time.deltaTime;
+                doubleCollectiblesStatus.text = "x2 Collectibles: " + Mathf.Floor(doubleCollectibleTimer);
 
                 //If time runs out,
                 if (doubleCollectibleTimer <= 0)
                 {
                     //Remove the double collectible powerup
                     hasDoubleCollectibles = false;
+                    doubleCollectibleTimer = doubleCollectibleTime;
+                    doubleCollectiblesStatus.text = "";
                 }
             }
         }
@@ -200,6 +219,8 @@ public class Player : MonoBehaviour
             {
                 //Remove the invincibility and give control back to the player
                 isInvincible = false;
+                invincibilityTimer = invincibilityTime;
+                extraLifeStatus.text = "";
                 TogglePlayer(true);
             }
         }
@@ -301,7 +322,7 @@ public class Player : MonoBehaviour
         //Pays the cost and gives the player double jump
         Score -= price;
         hasDoubleJump = true;
-        doubleJumpTimer = doubleJumpTime;
+        doubleJumpStatus.text = "Double Jump: " + Mathf.Floor(doubleJumpTimer);
     }
 
     //Gives the player an extra life from the shop
@@ -310,7 +331,7 @@ public class Player : MonoBehaviour
         //Pays the cost and gives the player an extra life
         Score -= price;
         hasExtraLife = true;
-        invincibilityTimer = invincibilityTime;
+        extraLifeStatus.text = "Extra Life";
     }
 
     //Gives the player a double collectibles boost from the shop
@@ -319,7 +340,7 @@ public class Player : MonoBehaviour
         //Pays the cost and gives the player double jump
         Score -= price;
         hasDoubleCollectibles = true;
-        doubleCollectibleTimer = doubleCollectibleTime;
+        doubleCollectiblesStatus.text = "x2 Collectibles: " + Mathf.Floor(doubleCollectibleTimer);
     }
 
     /// <summary>
