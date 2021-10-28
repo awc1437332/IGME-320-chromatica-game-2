@@ -672,6 +672,7 @@ PrefabInstance:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d606fd981e88f84ab91a328d3f15fac, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &660896099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,11 +680,16 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 0}
 =======
+=======
+>>>>>>> parent of e65f9d3 (Shop spawning created)
 --- !u!114 &660896099 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3130602140617702138, guid: 33f94e5ad1b2582409a4f3e3753116d3,
     type: 3}
   m_PrefabInstance: {fileID: 3130602140070577049}
+<<<<<<< HEAD
+>>>>>>> parent of e65f9d3 (Shop spawning created)
+=======
 >>>>>>> parent of e65f9d3 (Shop spawning created)
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -693,9 +699,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
   shopScreen: {fileID: 0}
   timerText: {fileID: 0}
   startingTime: 4
+=======
+>>>>>>> parent of e65f9d3 (Shop spawning created)
 =======
 >>>>>>> parent of e65f9d3 (Shop spawning created)
 --- !u!1 &664796082
