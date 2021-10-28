@@ -121,6 +121,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &140043150
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +272,8 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 3, z: 1}
   m_Center: {x: 0, y: 1.5, z: 0}
+=======
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
 --- !u!1 &382596606
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +306,11 @@ Transform:
   - {fileID: 1138147879}
   - {fileID: 750277474}
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 8
+=======
+  m_RootOrder: 6
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &463790944
 GameObject:
@@ -480,7 +487,11 @@ PrefabInstance:
     - target: {fileID: 5663500589887034353, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
       propertyPath: m_RootOrder
+<<<<<<< HEAD
       value: 10
+=======
+      value: 9
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
       objectReference: {fileID: 0}
     - target: {fileID: 5663500589887034353, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
@@ -637,7 +648,11 @@ PrefabInstance:
     - target: {fileID: 5663500589887034353, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
       propertyPath: m_RootOrder
+<<<<<<< HEAD
       value: 11
+=======
+      value: 10
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
       objectReference: {fileID: 0}
     - target: {fileID: 5663500589887034353, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
@@ -3045,7 +3060,11 @@ PrefabInstance:
     - target: {fileID: 5663500589887034353, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
       propertyPath: m_RootOrder
+<<<<<<< HEAD
       value: 9
+=======
+      value: 8
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
       objectReference: {fileID: 0}
     - target: {fileID: 5663500589887034353, guid: 5d606fd981e88f84ab91a328d3f15fac,
         type: 3}
@@ -3085,6 +3104,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 479867467}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
+--- !u!1 &919132147597206194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7623465524851938331, guid: c7a817e12754d5547b2eed1645f0640b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7280794821081495209}
+  m_PrefabAsset: {fileID: 0}
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
 --- !u!1001 &3130602140070577049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3164,3 +3192,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33f94e5ad1b2582409a4f3e3753116d3, type: 3}
+<<<<<<< HEAD
+=======
+--- !u!1001 &7280794821081495209
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7097722686659153569, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097722686659153569, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097722686659153569, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097722686659153569, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097722686659153569, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097722686659153569, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097722686659153569, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097722686659153569, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097722686659153569, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097722686659153569, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097722686659153569, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280794821242929476, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: progressBar
+      value: 
+      objectReference: {fileID: 919813848}
+    - target: {fileID: 7623465524851938331, guid: c7a817e12754d5547b2eed1645f0640b,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c7a817e12754d5547b2eed1645f0640b, type: 3}
+>>>>>>> parent of f9a5f94 (Merge branch 'main' of https://github.com/awc1437332/IGME-320-chromatica-game-2)
