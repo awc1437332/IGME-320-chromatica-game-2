@@ -2838,7 +2838,7 @@ MonoBehaviour:
   - {fileID: 1015660574}
   - {fileID: 2069865651}
   - {fileID: 1168169722}
-  obstacleTemplate: {fileID: 7959664456401613508, guid: 284e8857785751c4ab9b8c754536bab4,
+  obstacleTemplate: {fileID: 3977805747666238707, guid: b9216ec2122859c4d8299ebad6efd2ea,
     type: 3}
   collectibleTemplate: {fileID: 8645324967976619718, guid: 7bd45ac8f9b3db14ea36d4627f8e8700,
     type: 3}
@@ -2871,7 +2871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81295ab12700e294d8362ed8b368ee8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleTemplate: {fileID: 7959664456401613508, guid: 284e8857785751c4ab9b8c754536bab4,
+  obstacleTemplate: {fileID: 3977805747666238707, guid: b9216ec2122859c4d8299ebad6efd2ea,
     type: 3}
   collectibleTemplate: {fileID: 8645324967976619718, guid: 7bd45ac8f9b3db14ea36d4627f8e8700,
     type: 3}
