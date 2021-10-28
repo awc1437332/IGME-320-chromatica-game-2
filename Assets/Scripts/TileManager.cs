@@ -228,8 +228,8 @@ public class TileManager : MonoBehaviour
         // Current tile is vacant. Spawn Collectibles in a straight line.
         else
         {
-            // +1 to raise it above the tile.
-            float y = tiles[resettingTileIndex].transform.position.y + 1;
+            // +2 to raise it above the tile.
+            float y = tiles[resettingTileIndex].transform.position.y + 2;
 
             float z;
 
