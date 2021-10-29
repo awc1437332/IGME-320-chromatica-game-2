@@ -69,7 +69,7 @@ public class StateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentState == GameState.Gameplay)
+        if (currentState == GameState.Gameplay || currentState == GameState.Pause)
         {
             //If the player presses P, toggle the pause/resume function
             if (Input.GetKeyDown(KeyCode.P))
@@ -114,8 +114,8 @@ public class StateManager : MonoBehaviour
 
         tileManager.ToggleTiles(true);
 
-        //Disables the player
-        player.TogglePlayer(false);
+        //Enables the player
+        player.TogglePlayer(true);
 
         //Enables the game screen
         gameScreen.SetActive(true);
