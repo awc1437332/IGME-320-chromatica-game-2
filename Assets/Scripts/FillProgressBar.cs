@@ -99,7 +99,7 @@ public class FillProgressBar : MonoBehaviour
 
     private void ScaleDecrement()
     {
-        decrementProgressFactor *= progressDecrementScaleFactor * Time.deltaTime;
+        decrementProgressFactor *= progressDecrementScaleFactor;
     }
 
     // Start is called before the first frame update

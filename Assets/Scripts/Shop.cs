@@ -61,6 +61,11 @@ public class Shop : MonoBehaviour
                 ToggleShop(false);
             }
         }
+
+        if (transform.parent.position.z <= -20.0f)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     //Enables the shop window
