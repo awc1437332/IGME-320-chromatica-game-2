@@ -341,7 +341,7 @@ public class TileManager : MonoBehaviour
             else
             {
                 //1% Chance to spawn the shop instead
-                if (Random.Range(0, 5) > 0)
+                if (Random.Range(0, 100) > 0)
                 {
                     laneScripts[resettingTileIndex].obstacles[i] = PlaceObstacle(resettingTileIndex, i);
                 }
