@@ -150,7 +150,7 @@ public class StateManager : MonoBehaviour
 
         if (displayScore)
         {
-            scoreText.text = "Score: " + player.Score;
+            scoreText.text = "Score: " + Mathf.Floor(player.Score);
             endScreen.SetActive(true);
         }
         else
